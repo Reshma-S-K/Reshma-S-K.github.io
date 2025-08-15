@@ -26,38 +26,42 @@ It showcases my projects, skills, resume, and contact information in a responsiv
 ## 📁 Project Structure 
 ```
 Reshma-S-K/
+|   .gitattributes
 |   about.html
 |   certificates.html
 |   contact.html
-|   SR_Resume.pdf
 |   experience.html
-|   index.html                             # Main homepage to open the template in the browser
-|   License.txt                            # License information 
-|   README.md
-|   Readme.txt                             # Project documentation
+|   favicon.ico
+|   index.html                        # Main homepage to open the template in the browser
+|   projects.html
+|   README.md                         # Project documentation
 |   resume.html
-|   
-\---assets
-    +---css                                # CSS framework
-    +---img                                # images required for the template
-    |   +---certificates
-    |   \---exp
-    +---js                                 # JS file
-    \---vendor                             # Animate On Scroll for scroll and slide based animations
-        +---aos
-        +---bootstrap
-        |   +---css
-        |   \---js
-        +---bootstrap-icons
-        |   \---fonts
-        +---glightbox
-        |   +---css
-        |   \---js
-        +---imagesloaded
-        +---isotope-layout
-        +---purecounter
-        +---swiper
-        \---waypoints                
+|   SR_Resume.pdf
++---css                               # CSS framework
++---img                               # images required for the template
++---js                                # JS files
++---lib
+|   +---animate
+|   +---counterup
+|   +---easing
+|   +---isotope
+|   +---lightbox
+|   |   +---css
+|   |   +---images
+|   |   \---js
+|   +---owlcarousel
+|   |   \---assets
+|   +---typed
+|   +---waypoints
+|   \---wow
+\---scss
+    \---bootstrap
+        \---scss
+            +---forms
+            +---helpers
+            +---mixins
+            +---utilities
+            \---vendor        
 ```
 ---
 ## 📸 A Glimpse Into My Potfolio Website 
