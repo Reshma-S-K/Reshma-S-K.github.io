@@ -1,28 +1,38 @@
 # 💼 Reshma-S-K.github.io
-This is my personal portfolio website, built using HTML, CSS, and JavaScript
+
+This is my personal portfolio website, built using HTML, CSS, and JavaScript<!-- based on the template by ([Booststrapmade](https://bootstrapmade.com/)) idea.-->
 
 It showcases my projects, skills, resume, and contact information in a responsive, clean, and professional design.
 
-🌐 Live Demo
-Click here to view 
+---
 
-🚀 Features
-Responsive design for mobile, tablet, and desktop
-Smooth scrolling and animated sections
-Downloadable resume
-Project portfolio section
-Contact form and embedded map
-Social media and email links
-📁 Project Structure
+## 🌐 Live Demo
+
+[Click here to view ](https://reshma-s-k.github.io/)
+
+---
+
+## 🚀 Features
+
+- Responsive design for mobile, tablet, and desktop
+- Smooth scrolling and animated sections
+- Downloadable resume
+- Project portfolio section
+- Contact form and embedded map
+- Social media and email links
+
+---
+
+## 📁 Project Structure 
+```
 Reshma-S-K/
 |   about.html
 |   certificates.html
 |   contact.html
-|   ESVResume.pdf
+|   SR_Resume.pdf
 |   experience.html
 |   index.html                             # Main homepage to open the template in the browser
 |   License.txt                            # License information 
-|   Portfolio_Thumbnail.jpg                # Snippet of the website
 |   README.md
 |   Readme.txt                             # Project documentation
 |   resume.html
@@ -45,13 +55,17 @@ Reshma-S-K/
         |   \---js
         +---imagesloaded
         +---isotope-layout
-        +---php-email-form
         +---purecounter
         +---swiper
         \---waypoints                
-📸 A Glimpse Into My Potfolio Website
-Portfolio Preview
+```
+---
+## 📸 A Glimpse Into My Potfolio Website 
+![Portfolio Preview](img/Portfolio_Cover_page.png)
 
-📫 Contact
-Feel free to reach out via the contact form on the site or email me at :
-LinkedIn GitHub Email
+
+### 📫 Contact 
+Feel free to reach out via the contact form on the site or email me at :  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/shaik-reshma-5ab0b6286)
+[![GitHub](https://img.shields.io/badge/GitHub-black?style=flat&logo=github)](https://github.com/Reshma-S-K)
+[![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:reshmashaik2111@gmail.com)
