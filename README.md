@@ -1,6 +1,6 @@
 # 💼 Reshma-S-K.github.io
 
-This is my personal portfolio website, built using HTML, CSS, and JavaScript<!-- based on the template by ([Booststrapmade](https://bootstrapmade.com/)) idea.-->
+This is my personal portfolio website, built using HTML, CSS, bootstrap and JavaScript.
 
 It showcases my projects, skills, resume, and contact information in a responsive, clean, and professional design.
 
