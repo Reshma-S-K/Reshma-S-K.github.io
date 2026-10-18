@@ -1,136 +1,69 @@
-(function ($) {
-    "use strict";
+// Mobile nav toggle
+const navToggle = document.querySelector('.nav__toggle');
+const navLinks = document.querySelector('.nav__links');
+if(navToggle){
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+}
 
-    // Spinner
-    var spinner = function () {
-        setTimeout(function () {
-            if ($('#spinner').length > 0) {
-                $('#spinner').removeClass('show');
-            }
-        }, 1);
-    };
-    spinner();
-    
-    
-    // Initiate the wowjs
-    new WOW().init();
+// 1) Scroll reveal
+(function () {
+  var els = document.querySelectorAll(".rv, .sk");
+  if (!("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in"); }); return; }
+  var io = new IntersectionObserver(function (list) {
+    list.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  els.forEach(function (e) { io.observe(e); });
+})();
 
-    $(document).ready(function () {
+// 2) Home terminal: type the command, then reveal commits
+(function () {
+  var t = document.getElementById("t");
+  if (!t || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var ty = document.getElementById("ty"), cmd = ty.textContent, rows = t.querySelectorAll(".row"), i = 0;
+  ty.textContent = "";
+  rows.forEach(function (r) { r.style.display = "none"; });
+  (function type() {
+    ty.textContent = cmd.slice(0, ++i);
+    if (i < cmd.length) return setTimeout(type, 60);
+    var n = 0;
+    (function show() { if (n < rows.length) { rows[n++].style.display = ""; setTimeout(show, 450); } })();
+  })();
+})();
 
-    // Smooth scrolling on the navbar links
-    $(".navbar-nav a").on('click', function (event) {
-        if (this.hash !== "") {
-            event.preventDefault();
+// Contact form: send to Formspree without leaving the page
+(function () {
+  var form = document.getElementById("contactForm");
+  if (!form) return;
+  var status = document.getElementById("formStatus");
+  var btn = form.querySelector("button[type=submit]");
 
-            // Smooth scroll animation
-            $('html, body').animate({
-                scrollTop: $(this.hash).offset().top - 45
-            }, 1500, 'easeInOutExpo');
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    btn.disabled = true;
+    status.className = "";
+    status.textContent = "Sending...";
 
-            // Update active class
-            $('.navbar-nav .active').removeClass('active');
-            $(this).addClass('active');
-        }
-
-        // Close mobile navbar after clicking a link
-        if ($('.navbar-toggler').is(':visible')) {
-            $('.navbar-collapse').collapse('hide');
-        }
-    });
-
-});
-
-    
-    // Back to top button
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 300) {
-            $('.back-to-top').fadeIn('slow');
-        } else {
-            $('.back-to-top').fadeOut('slow');
-        }
-    });
-    $('.back-to-top').click(function () {
-        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
-        return false;
-    });
-    
-
-    // Typed Initiate
-    if ($('.typed-text-output').length == 1) {
-        var typed_strings = $('.typed-text').text();
-        var typed = new Typed('.typed-text-output', {
-            strings: typed_strings.split(', '),
-            typeSpeed: 100,
-            backSpeed: 20,
-            smartBackspace: false,
-            loop: true
-        });
-    }
-
-
-    // Facts counter
-    $('[data-toggle="counter-up"]').counterUp({
-        delay: 10,
-        time: 2000
-    });
-
-    
-
-    // Skills
-    $('.skill').waypoint(function () {
-        $('.progress .progress-bar').each(function () {
-            $(this).css("width", $(this).attr("aria-valuenow") + '%');
-        });
-    }, {offset: '80%'});
-
-
-    // Portfolio isotope and filter
-    var portfolioIsotope = $('.portfolio-container').isotope({
-        itemSelector: '.portfolio-item',
-        layoutMode: 'fitRows'
-    });
-    $('#portfolio-flters li').on('click', function () {
-        $("#portfolio-flters li").removeClass('active');
-        $(this).addClass('active');
-
-        portfolioIsotope.isotope({filter: $(this).data('filter')});
-    });
-
-
-    // Testimonials carousel
-    $(".testimonial-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1000,
-        items: 1,
-        dots: true,
-        loop: true,
-    });
-
-    document.getElementById("contactForm").addEventListener("submit", async function(event) {
-    event.preventDefault();
-
-    const form = event.target;
-    const formData = new FormData(form);
-
-    try {
-        let response = await fetch(form.action, {
-            method: form.method,
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        });
-
-        if (response.ok) {
-            document.getElementById("formStatus").style.display = "block";
-            setTimeout(() => {
-                window.location.href = "contact.html";
-            }, 2000); // 2-second delay
-        } else {
-            alert("❌ There was a problem sending your message.");
-        }
-    } catch (error) {
-        alert("⚠️ Error: " + error.message);
-    }
-});
-    
-})(jQuery);
-
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" }
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error("bad response");
+        form.reset();                       // clears the fields
+        status.className = "ok";
+        status.textContent = "Message sent, thank you! 😊";
+      })
+      .catch(function () {
+        status.className = "err";
+        status.textContent = "Something went wrong — please try again or email me directly";
+      })
+      .finally(function () {
+        btn.disabled = false;
+        setTimeout(function () { status.textContent = ""; status.className = ""; }, 6000);
+        // stay on contact.html and bring the form back into view
+        form.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+  });
+})();
