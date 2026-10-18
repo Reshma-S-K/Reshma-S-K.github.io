@@ -38,34 +38,14 @@ Reshma-S-K/
 |   resume.html
 |   SR_Resume.pdf
 +---css                               # CSS framework
-+---img                               # images required for the template
++---assets
+|   +---images                        # images required for the template
 +---js                                # JS files
-+---lib
-|   +---animate
-|   +---counterup
-|   +---easing
-|   +---isotope
-|   +---lightbox
-|   |   +---css
-|   |   +---images
-|   |   \---js
-|   +---owlcarousel
-|   |   \---assets
-|   +---typed
-|   +---waypoints
-|   \---wow
-\---scss
-    \---bootstrap
-        \---scss
-            +---forms
-            +---helpers
-            +---mixins
-            +---utilities
-            \---vendor        
+        
 ```
 ---
 ## 📸 A Glimpse Into My Potfolio Website 
-![Portfolio Preview](img/Portfolio_Cover_page.png)
+![Portfolio Preview](Portfolio_Cover_page.png)
 
 
 ### 📫 Contact 
